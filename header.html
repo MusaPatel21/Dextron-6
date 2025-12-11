@@ -82,7 +82,14 @@
                         </ul>
                     </div>
                 </div>
-                
+                <!-- <div class="main-menu__right">
+                    <div class="main-menu__search-and-btn-box">
+
+                        <div class="main-menu__btn-box">
+                            <a href="#" class="main-menu__btn thm-btn">Get a quote</a>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
     </nav>
@@ -93,7 +100,9 @@
 </div>
 
 
-
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content"></div>
+</div>
 
 
 <div class="mobile-nav__wrapper">
@@ -129,6 +138,50 @@
     </div>
 </div>
 
+<script>
+    // Sticky Menu
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector(".main-header");
+        var stickyHeader = document.querySelector(".stricky-header");
+
+        if (window.pageYOffset > 100) {
+            header.classList.add("stricky-fixed");
+            stickyHeader.classList.add("stricky-fixed");
+            stickyHeader.innerHTML = header.innerHTML; // clone menu
+        } else {
+            header.classList.remove("stricky-fixed");
+            stickyHeader.classList.remove("stricky-fixed");
+        }
+    });
+
+    // Prevent dropdown from closing on scroll
+    document.querySelectorAll(".dropdown").forEach(function (item) {
+        item.addEventListener("wheel", function (e) {
+            e.stopPropagation(); // keep open while scrolling
+        });
+    });
+</script>
+<style>
+    .stricky-header.stricky-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 9999;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .main-menu__list>li:hover>.product-scroll {
+        display: block;
+    }
+
+    .product-scroll {
+        max-height: 350px;
+        overflow-y: auto;
+    }
+</style>
 <style>
     .product-scroll {
         max-height: 350px;
@@ -151,5 +204,4 @@
     .product-scroll::-webkit-scrollbar-thumb:hover {
         background: #666;
     }
-
 </style>
